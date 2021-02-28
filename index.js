@@ -1,4 +1,4 @@
-const getGrisley = require("./clubs/GrisleyPear/getGrisley");
+const getGrisley = require("./scraping/clubs/GrisleyPear/getGrisley");
 const fs = require("fs");
 
 async function run() {
