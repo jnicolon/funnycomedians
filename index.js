@@ -82,7 +82,9 @@ async function run() {
       comediansResult[i].name = await getComedianName(html, NAME_SELECTOR);
       const imgLg = await getComedianImgs(html, PROFILE_IMG_SELECTOR);
       comediansResult[i].imgLg = `${website}${imgLg[0].img}`;
-      const bio = await getComedianName(html, BIO_SELECTOR);
+      let bio = await getComedianName(html, BIO_SELECTOR);
+      bio = bio.replace("/n", "");
+      bio = bio.trim();
       comediansResult[i].bio = bio;
     }
 
