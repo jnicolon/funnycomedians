@@ -72,14 +72,19 @@ async function run() {
 
     const comedianLinks = await getComedianLinks(html, allComedians, website);
 
-    // await page.goto(comedianLinks[3]);
-    // html = await page.content();
+    for (let i = 0; i < comedianLinks.length; i++) {
+      await page.goto(comedianLinks[i]);
+      html = await page.content();
+      const NAME_SELECTOR = ".scheduled-name";
+      const PROFILE_IMG_SELECTOR = ".comedian-highlight";
+      const BIO_SELECTOR = ".comedian-description";
 
-    // const NAME_SELECTOR = ".scheduled-name";
-
-    // comedianLinks
-
-    // const comedianName = await getComedianName(html, NAME_SELECTOR);
+      comediansResult[i].name = await getComedianName(html, NAME_SELECTOR);
+      const imgLg = await getComedianImgs(html, PROFILE_IMG_SELECTOR);
+      comediansResult[i].imgLg = `${website}${imgLg[0].img}`;
+      const bio = await getComedianName(html, BIO_SELECTOR);
+      comediansResult[i].bio = bio;
+    }
 
     console.log(comediansResult);
   }
