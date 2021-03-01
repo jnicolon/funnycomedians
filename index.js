@@ -1,15 +1,25 @@
-const getGrisley = require("./scraping/clubs/GrisleyPear/getGrisley");
+// const getGrisley = require("./scraping/clubs/GrisleyPear/getGrisley");
 const fs = require("fs");
+const getNYCC = require("./scraping/clubs/NYCC/getNYCC");
+const baseScrape = require("./scraping/baseScrape");
 
 async function run() {
-  const allGrisleyComedians = await getGrisley();
+  //Call NYCC
 
+  const allNyccComedians = await baseScrape(getNYCC);
   fs.writeFileSync(
-    "./clubs/GrisleyPear/allComedians.txt",
-    JSON.stringify(allGrisleyComedians)
+    "./allComedians/allComediansNYCC.txt",
+    JSON.stringify(allNyccComedians)
   );
+  console.log(allNyccComedians);
 
-  console.log(allGrisleyComedians);
+  //Call Grisley Pear
+  //   const allGrisleyComedians = await getGrisley();
+  //   fs.writeFileSync(
+  //     "./clubs/GrisleyPear/allComedians.txt",
+  //     JSON.stringify(allGrisleyComedians)
+  //   );
+  //   console.log(allGrisleyComedians);
 }
 
 run();
