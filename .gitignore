@@ -3,3 +3,4 @@
 /allComedians
 
 .gitignore
+.env
