@@ -5,14 +5,12 @@ const baseScrape = require("./scraping/baseScrape");
 
 async function run() {
   //Call NYCC
-
-  const allNyccComedians = await baseScrape(getNYCC);
-  fs.writeFileSync(
-    "./allComedians/allComediansNYCC.txt",
-    JSON.stringify(allNyccComedians)
-  );
-  console.log(allNyccComedians);
-
+  // const allNyccComedians = await baseScrape(getNYCC);
+  // fs.writeFileSync(
+  //   "./allComedians/allComediansNYCC.txt",
+  //   JSON.stringify(allNyccComedians)
+  // );
+  // console.log(allNyccComedians);
   //Call Grisley Pear
   //   const allGrisleyComedians = await getGrisley();
   //   fs.writeFileSync(
