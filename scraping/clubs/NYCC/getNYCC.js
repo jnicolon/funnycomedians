@@ -1,14 +1,14 @@
-const checkError = require("../../functions/checkError");
 const variablesNYCC = require("./nyccVariables");
 const singlePageNYCC = require("./singlePageNYCC");
 
 async function getNYCC(page) {
   await page.goto(`${variablesNYCC.initialUrl}${1}`);
 
-  async function getAllComedians(index, array) {
-    let pageNum = index;
-    let allComedians = array;
+  let allComedians = [];
 
+  //we got 37 by looking at the pages total pages
+
+  for (let i = 1; i <= 37; i++) {
     let spcs = await singlePageNYCC(
       page,
       variablesNYCC.PAGE_COMEDIANS_CONTAINERS,
@@ -19,32 +19,8 @@ async function getNYCC(page) {
     ).catch((err) => console.log(err));
 
     allComedians = [...allComedians, ...spcs];
-
-    let error;
-    if (pageNum === 2) {
-      error = true;
-    } else error = false;
-
-    // let error = await checkError(
-    //   page,
-    //   variablesNYCC.ERROR_CONDITION
-    // ).catch((err) => console.log(err));
-
-    if (!error) {
-      pageNum++;
-      await page.goto(`${variablesNYCC.initialUrl}${pageNum}`);
-
-      await getAllComedians(pageNum, allComedians).catch((err) =>
-        console.log(err)
-      );
-    }
-
-    return allComedians;
+    await page.goto(`${variablesNYCC.initialUrl}${i + 1}`);
   }
-
-  const allComedians = await getAllComedians(1, []).catch((err) =>
-    console.log(err)
-  );
 
   return allComedians;
 }
