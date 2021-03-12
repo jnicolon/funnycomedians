@@ -1,4 +1,3 @@
-const $ = require("cheerio");
 const getSinglePageComedians = require("../../functions/getSinglePageComedians");
 const variablesNYCC = require("./nyccVariables");
 

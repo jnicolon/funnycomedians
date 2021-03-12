@@ -11,9 +11,9 @@ async function getSinglePageComedians(
 ) {
   let html = await page.content().catch((err) => console.log(err));
 
-  const allComedians = $(PAGE_COMEDIANS_CONTAINERS, html);
+  const comediansContainer = $(PAGE_COMEDIANS_CONTAINERS, html);
 
-  let comediansResult = [];
+  let allComedians = [];
 
   let singleComedian = {
     name: "",
@@ -25,11 +25,11 @@ async function getSinglePageComedians(
   //Get all thumbnail imgs
 
   const comedianImgsSm = await get
-    .comedianImgs(html, allComedians)
+    .comedianImgs(html, comediansContainer)
     .catch((err) => console.log(err));
 
   comedianImgsSm.forEach((img) => {
-    comediansResult.push({
+    allComedians.push({
       ...singleComedian,
       imgSm: `${website}${img.img}`,
     });
@@ -38,7 +38,7 @@ async function getSinglePageComedians(
   //Go to every comedian profile and get img, name and profile
 
   const comedianLinks = await get
-    .comedianLinks(html, allComedians, website)
+    .comedianLinks(html, comediansContainer, website)
     .catch((err) => console.log(err));
 
   for (let i = 0; i < comedianLinks.length; i++) {
@@ -46,22 +46,22 @@ async function getSinglePageComedians(
 
     html = await page.content().catch((err) => console.log(err));
 
-    comediansResult[i].name = await get
+    allComedians[i].name = await get
       .comedianText(html, NAME_SELECTOR)
       .catch((err) => console.log(err));
 
     const imgLg = await get
       .comedianImgs(html, PROFILE_IMG_SELECTOR)
       .catch((err) => console.log(err));
-    comediansResult[i].imgLg = `${website}${imgLg[0].img}`;
+    allComedians[i].imgLg = `${website}${imgLg[0].img}`;
 
     let bio = await get
       .comedianText(html, BIO_SELECTOR)
       .catch((err) => console.log(err));
-    comediansResult[i].bio = bio;
+    allComedians[i].bio = bio;
   }
 
-  return comediansResult;
+  return allComedians;
 }
 
 module.exports = getSinglePageComedians;
