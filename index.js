@@ -1,9 +1,28 @@
 // const getGrisley = require("./scraping/clubs/GrisleyPear/getGrisley");
 const fs = require("fs");
-const getNYCC = require("./scraping/clubs/NYCC/getNYCC");
-const baseScrape = require("./scraping/baseScrape");
+// const getNYCC = require("./scraping/clubs/NYCC/getNYCC");
+// const baseScrape = require("./scraping/baseScrape");
+const uploadComedians = require("./scraping/functions/uploadComedians");
 
 async function run() {
+
+  fs.readFile('./allComedians/allComediansGrisley.txt', 'utf8', (err, data)=>{
+    if (err){
+      console.log(err)
+    } else {
+      const comedians = JSON.parse(data)
+
+      // const testArray = [comedians[0], comedians[1]]
+
+      uploadComedians(comedians); 
+
+    }
+  })
+
+
+  // await uploadComedians('./allComedians/allComediansGrisley.txt');
+  // console.log("run");
+
   //Call NYCC
   // const allNyccComedians = await baseScrape(getNYCC);
   // fs.writeFileSync(
