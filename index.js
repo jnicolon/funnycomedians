@@ -6,16 +6,13 @@ const uploadComedians = require("./scraping/functions/uploadComedians");
 
 async function run() {
 
-  fs.readFile('./allComedians/allComediansGrisley.txt', 'utf8', (err, data)=>{
+  fs.readFile('./allComedians/allComediansNYCC.txt', 'utf8', (err, data)=>{
     if (err){
       console.log(err)
     } else {
       const comedians = JSON.parse(data)
 
-      // const testArray = [comedians[0], comedians[1]]
-
-      uploadComedians(comedians); 
-
+      uploadComedians(comedians, "nycc"); 
     }
   })
 

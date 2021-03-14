@@ -10,12 +10,13 @@ const pool = new Pool({
   port: process.env.SQL_PORT,
 });
 
-const uploadComedians = async (comedians) => {
+const uploadComedians = async (comedians, comedyClub) => {
 
       comedians.forEach(async (comedian) => {
         
-        const query = `INSERT INTO grisley_pear(comedian_name, img_sm, img_lg, bio) 
+        const query = `INSERT INTO ${comedyClub}(comedian_name, img_sm, img_lg, bio) 
                           VALUES ($1, $2, $3, $4)`;
+
         pool.query(query, [comedian.name, comedian.imgSm, comedian.imgLg, comedian.bio], (err, results) => {
           if (err) {
             console.log("There was an error: " + err);
