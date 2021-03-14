@@ -1,8 +1,8 @@
 // const getGrisley = require("./scraping/clubs/GrisleyPear/getGrisley");
-const fs = require("fs");
 // const getNYCC = require("./scraping/clubs/NYCC/getNYCC");
 // const baseScrape = require("./scraping/baseScrape");
-const uploadComedians = require("./scraping/functions/uploadComedians");
+const fs = require("fs");
+const uploadComedians = require("./postgres/uploadComedians");
 
 async function run() {
 
