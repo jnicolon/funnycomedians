@@ -67,3 +67,6 @@ transition: all 0.3s;
     outline: none;
 }
 
+.search-container{
+    position: relative;
+}

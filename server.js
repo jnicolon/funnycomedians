@@ -26,7 +26,7 @@ app.get('/api/:comedians', async(req, res)=>{
                  FROM 
                         comedians 
                  WHERE 
-                        comedian_name LIKE $1
+                        comedian_name ILIKE $1
                  LIMIT 10`
 
 pool.query(query, [`${req.params.comedians}%`], (err, psRes)=>{
