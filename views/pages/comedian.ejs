@@ -3,13 +3,20 @@
     <%- include('../partials/head.ejs')  %>
 
     <body>
-        <div class="main-container">
+        <div class="main-container-comedian">
             <% if(data){ %>
+                <img class="comedian-img" alt="comedian-image" src="<%= data.img_lg %>"> </img> 
             <h1 class="title"><%= data.comedian_name %></h1>
+                <p class="comedian-bio"><%= data.bio %></p>
+                <p class="veredict">NOT FUNNY!</p>
+                <a href="/">
+                    <h2 class="back-link"> Go back to search</h2>
+                </a>
+                
             <% } else { %>
                 <h1 class="title">No comedian with that name!</h1>
                 <a href="/">
-                <h2 c1lass="back-link"> Go back to search</h2>
+                <h2 class="back-link"> Go back to search</h2>
                 </a>
             <% } %>
             
