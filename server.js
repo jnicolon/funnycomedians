@@ -33,8 +33,21 @@ pool.query(query, [`${req.params.comedians}%`], (err, psRes)=>{
     err ? console.log(err) : res.json(psRes.rows)  })
 })
 
-app.get('/:comedianId', (req, res)=>{
-  res.render('./pages/comedian', {data: req.params})
+app.get('/:comedianName', (req, res)=>{
+
+  const query = `SELECT 
+                        *
+                        FROM 
+                          comedians 
+                        WHERE 
+                          comedian_name = $1
+                        `
+
+pool.query(query, [`${req.params.comedianName}`], (err, psRes)=>{
+err ? console.log(err) :  res.render('./pages/comedian', {data: psRes.rows[0]})  })
+
+
+ 
 })
 
 app.use((req, res)=>{

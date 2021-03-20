@@ -2,7 +2,6 @@ const searchBar = document.getElementById('search-bar');
 const searchSuggestions = document.querySelector('#search-suggestions');
 const searchContainer = document.querySelector('.search-container');
 
-
 searchBar.addEventListener('keyup', async (e)=>{
     try {
         if (e.target.value.length > 0){
@@ -15,11 +14,11 @@ searchBar.addEventListener('keyup', async (e)=>{
             
             console.log(searchResults)
 
-            searchResults.forEach(result =>{
+            searchResults.forEach((result, index) =>{
                 searchSuggestions.innerHTML += `
                     <li class='search-suggestion'>
                         <a class="search-link" href="/${result.comedian_name}">
-                            <p class="hovered-link">${result.comedian_name}</p>
+                            <p id=${index} class="hovered-link">${result.comedian_name}</p>
                             
                         </a>
                     </li>`
@@ -27,20 +26,18 @@ searchBar.addEventListener('keyup', async (e)=>{
             });
 
             const allLinks = document.querySelectorAll('.hovered-link');
-
             
-
             allLinks.forEach(link =>{
                 link.addEventListener('mouseenter', ()=>{
                     link.classList.add("selected");
-
                 })
-
+            
                 link.addEventListener('mouseleave', ()=>{
                     link.classList.remove("selected");
-
+            
                 })
             })
+            
 
         } else {
             searchSuggestions.innerHTML = "";
@@ -51,11 +48,7 @@ searchBar.addEventListener('keyup', async (e)=>{
     }
 });
 
-
-
-
 searchContainer.addEventListener('submit', (e)=>{
     e.preventDefault();
     window.location = `/${searchBar.value}`
-    console.log(searchBar.value)
 }) 

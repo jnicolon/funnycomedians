@@ -4,8 +4,14 @@
 
     <body>
         <div class="main-container">
-            <h1 class="title"><%= data.comedianId %></h1>
-         
+            <% if(data){ %>
+            <h1 class="title"><%= data.comedian_name %></h1>
+            <% } else { %>
+                <h1 class="title">No comedian with that name!</h1>
+                <a href="/">
+                <h2 c1lass="back-link"> Go back to search</h2>
+                </a>
+            <% } %>
             
         </div>
         
