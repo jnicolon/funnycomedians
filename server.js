@@ -4,8 +4,16 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 
-const pool = require('./postgres/pool');
+// const pool = require('./postgres/pool');
 
+const {Client} = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 app.use(cors());
 app.use(express.json());
@@ -19,6 +27,8 @@ app.get('/', async (req, res)=>{
 })
 
 app.get('/api/:comedians', async(req, res)=>{
+
+  await client.connect();
   
   const query = `SELECT 
                         comedian_name, 
@@ -29,11 +39,15 @@ app.get('/api/:comedians', async(req, res)=>{
                         comedian_name ILIKE $1
                  LIMIT 10`
 
-pool.query(query, [`${req.params.comedians}%`], (err, psRes)=>{
+client.query(query, [`${req.params.comedians}%`], (err, psRes)=>{
     err ? console.log(err) : res.json(psRes.rows)  })
+
+    await client.end()
 })
 
-app.get('/:comedianName', (req, res)=>{
+app.get('/:comedianName', async (req, res)=>{
+
+  await client.connect();
 
   const query = `SELECT 
                         *
@@ -43,10 +57,10 @@ app.get('/:comedianName', (req, res)=>{
                           comedian_name = $1
                         `
 
-pool.query(query, [`${req.params.comedianName}`], (err, psRes)=>{
+client.query(query, [`${req.params.comedianName}`], (err, psRes)=>{
 err ? console.log(err) :  res.render('./pages/comedian', {data: psRes.rows[0]})  })
 
-
+await client.end();
  
 })
 
