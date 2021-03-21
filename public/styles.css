@@ -27,17 +27,7 @@ body{
     
 }
 
-.main-container-comedian{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 70vw;
-    height: 70vh;
-    position: relative;
-    top: 50px;
-    
-}
+
 
 .title{
     position: relative;
@@ -134,17 +124,30 @@ a{
     text-align: center;
     font-family: 'Dosis', sans-serif;
     font-size: 1.1rem;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .back-link:hover{
     text-decoration: underline;
 }
 
+.main-container-comedian{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70vw;
+    height: 80vh;
+    position: relative;
+    top: 100px;
+    
+}
+
 .comedian-bio{
     font-family: 'Open Sans', sans-serif;
-    min-height: 200px;
-    margin-bottom: 20px;
+    max-height: 400px;
+    overflow: auto;
+    
 }
 
 .comedian-img{
@@ -156,7 +159,30 @@ a{
 
 .veredict{
     text-align: center;
-    font-size: 3rem;
+    font-size: 4rem;
     font-family: 'Alfa Slab One', cursive;
     color: rgb(207, 27, 27);
+    transition: all 1s;
+    margin-top: 20px;
+}
+
+.loading{
+    height: 100px;
+}
+
+.calculating{
+    text-align: center;
+    position: relative;
+    top:-20px;
+}
+
+.off{
+    display: none;
+}
+
+.loading-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

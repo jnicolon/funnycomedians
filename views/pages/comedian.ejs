@@ -8,7 +8,12 @@
                 <img class="comedian-img" alt="comedian-image" src="<%= data.img_lg %>"> </img> 
             <h1 class="title"><%= data.comedian_name %></h1>
                 <p class="comedian-bio"><%= data.bio %></p>
-                <p class="veredict">NOT FUNNY!</p>
+                <div class="loading-container">
+                    <img class="loading" src="/loading.gif"></img>
+                    <p class="calculating">Calculating funnyness...</p>
+                </div>
+              
+                <p class="off veredict">NOT FUNNY!</p>
                 <a href="/">
                     <h2 class="back-link"> Go back to search</h2>
                 </a>
@@ -24,6 +29,6 @@
         
         
 
-        <script src="" async defer></script>
+        <script src="/comedian.js" async defer></script>
     </body>
 </html>
