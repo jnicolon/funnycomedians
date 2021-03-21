@@ -147,6 +147,7 @@ a{
     font-family: 'Open Sans', sans-serif;
     max-height: 400px;
     overflow: auto;
+    max-width: 800px;
     
 }
 
