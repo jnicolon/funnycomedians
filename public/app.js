@@ -2,13 +2,17 @@ const searchBar = document.getElementById('search-bar');
 const searchSuggestions = document.querySelector('#search-suggestions');
 const searchContainer = document.querySelector('.search-container');
 
+
+
 searchBar.addEventListener('keyup', async (e)=>{
     try {
         if (e.target.value.length > 0){
 
             searchSuggestions.innerHTML = "";
         
-            const response = await fetch(`https://funny-comedians.herokuapp.com/api/${e.target.value}`);
+            const response = await fetch(`https://funny-comedians.herokuapp.com/api/${e.target.value}`, {
+                mode:'no-cors'
+            });
     
             const searchResults = await response.json();
             
