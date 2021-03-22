@@ -8,7 +8,7 @@ searchBar.addEventListener('keyup', async (e)=>{
 
             searchSuggestions.innerHTML = "";
         
-            const response = await fetch(`http://localhost:5000/api/${e.target.value}`);
+            const response = await fetch(`https://funny-comedians.herokuapp.com/api/${e.target.value}`);
     
             const searchResults = await response.json();
             
