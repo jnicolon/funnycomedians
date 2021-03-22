@@ -32,11 +32,9 @@ app.get('/api/:comedians', async(req, res)=>{
                           comedian_name ILIKE $1
                    LIMIT 10`
   
-  // pool.query(query, [`${req.params.comedians}%`], (err, psRes)=>{
-  //     err ? console.log(err) : res.json(psRes.rows)  })
+  pool.query(query, [`${req.params.comedians}%`], (err, psRes)=>{
+      err ? console.log(err) : res.json(psRes.rows)  })
   
-  res.json(req.params.comedians)
-
 
   } catch (error) {
     console.log(error)
