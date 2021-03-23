@@ -7,16 +7,16 @@
 async function run() {
 
 
-  //Upload comedians to database
-  // fs.readFile('./allComedians/allComediansNYCC.txt', 'utf8', (err, data)=>{
-  //   if (err){
-  //     console.log(err)
-  //   } else {
-  //     const comedians = JSON.parse(data)
+  // Upload comedians to database
+  fs.readFile('./allComedians/allComediansNYCC.txt', 'utf8', (err, data)=>{
+    if (err){
+      console.log(err)
+    } else {
+      const comedians = JSON.parse(data)
 
-  //     uploadComedians(comedians, "nycc"); 
-  //   }
-  // })
+      uploadComedians(comedians, "nycc"); 
+    }
+  })
 
 
 
