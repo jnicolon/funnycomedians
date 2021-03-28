@@ -80,7 +80,13 @@ searchBar.addEventListener('input', async (e)=>{
                     
                     break;
                 case "ArrowDown":
-                    selected < allLinks.length && selected++
+
+                    if (allLinks.length === 1 ){
+                        selected = 0
+                    } else {
+                        selected < allLinks.length && selected++
+                    }
+                   
                     checkSelected(allLinks, selected)
                     e.target.value = allLinks[selected].innerText
 
