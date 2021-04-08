@@ -8,15 +8,9 @@
 Link to live page:
 
 https://funny-comedians.herokuapp.com/
-
 ____
-
 ![A test image](https://www.juannicolon.com/imgs/screenshots/comedians/com-1.jpg)
-
 ____
-
 ![A test image](https://www.juannicolon.com/imgs/screenshots/comedians/com-2.jpg)
-
 ____
-
 ![A test image](https://www.juannicolon.com/imgs/screenshots/comedians/com-3.jpg)
